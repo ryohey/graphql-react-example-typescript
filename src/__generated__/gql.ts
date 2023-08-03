@@ -13,8 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  fragment RepositoryData on Repository {\n    id\n    name\n  }\n": types.RepositoryDataFragmentDoc,
-    "\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryData\n      }\n    }\n  }\n": types.GetRepositoriesDocument,
+    "\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryRow_repository\n      }\n    }\n  }\n": types.GetRepositoriesDocument,
+    "\n  fragment RepositoryRow_repository on Repository {\n    id\n    name\n  }\n": types.RepositoryRow_RepositoryFragmentDoc,
 };
 
 /**
@@ -34,11 +34,11 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  fragment RepositoryData on Repository {\n    id\n    name\n  }\n"): (typeof documents)["\n  fragment RepositoryData on Repository {\n    id\n    name\n  }\n"];
+export function gql(source: "\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryRow_repository\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryRow_repository\n      }\n    }\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryData\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetRepositories {\n    search(query: \"swift\", type: REPOSITORY, first: 10) {\n      nodes {\n        ...RepositoryData\n      }\n    }\n  }\n"];
+export function gql(source: "\n  fragment RepositoryRow_repository on Repository {\n    id\n    name\n  }\n"): (typeof documents)["\n  fragment RepositoryRow_repository on Repository {\n    id\n    name\n  }\n"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

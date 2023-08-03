@@ -1,7 +1,15 @@
-import { RepositoryDataFragment } from "./__generated__/graphql"
+import { gql } from "./__generated__"
+import { RepositoryRow_RepositoryFragment } from "./__generated__/graphql"
+
+gql(`
+  fragment RepositoryRow_repository on Repository {
+    id
+    name
+  }
+`)
 
 export interface RepositoryRowProps {
-  repository: RepositoryDataFragment
+  repository: RepositoryRow_RepositoryFragment
 }
 
 export function RepositoryRow({ repository }: RepositoryRowProps) {
