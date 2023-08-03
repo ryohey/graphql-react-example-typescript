@@ -1,4 +1,5 @@
 import { useQuery } from "@apollo/client"
+import { RepositoryRow } from "./RepositoryRow"
 import { gql } from "./__generated__"
 
 const GET_REPOSITORIES = gql(`
@@ -23,10 +24,6 @@ export function RepositoryList() {
   return data.search?.nodes?.map(
     (node) =>
       node &&
-      node.__typename === "Repository" && (
-        <div key={node.id}>
-          <p>{node.name}</p>
-        </div>
-      )
+      node.__typename === "Repository" && <RepositoryRow repository={node} />
   )
 }
