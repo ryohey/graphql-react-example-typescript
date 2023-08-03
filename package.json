@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build"
+    "dev": "concurrently \"vite\" \"npm run codegen -- -w\"",
+    "build": "tsc && vite build",
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.ts dotenv_config_path=.env.local"
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
@@ -14,10 +15,14 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@parcel/watcher": "^2.2.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.3",
-    "typescript": "^5.0.2",
+    "concurrently": "^8.2.0",
+    "typescript": "^5.1.6",
     "vite": "^4.4.5"
   }
 }
